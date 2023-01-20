@@ -20,15 +20,22 @@ const TaskForm = (props) => {
         onSubmit
     } = props;
 
+    /**  
+     * used useRef instead of useState
+     * useRef is powerful because it's persisted between renders. 
+     * Unlike useState, useRef doesn't cause a component to re-render when the value or state changes. 
+    */
     const titleRef = useRef();
     const descriptionRef = useRef();
 
     const handleSubmit = () => {
+        /* values here already updates from input component */
         const params = {
             title: titleRef.current.value || '',
             description: descriptionRef.current.value || ''
         }
 
+        /* sends back the params to the callback function */
         onSubmit(params);
     }
 
@@ -63,7 +70,7 @@ const TaskForm = (props) => {
                         />
                     </View>
 
-                    <TouchableOpacity onPress={handleSubmit} style={styles.button(theme.secondary)}>
+                    <TouchableOpacity onPress={handleSubmit} style={styles.button(theme.primary)}>
                         <Text style={styles.buttonText}>Create</Text>
                     </TouchableOpacity>
                 </SafeAreaView>

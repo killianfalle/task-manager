@@ -16,12 +16,25 @@ const siteTheme = {
 
 const App = () => {
   const [routeName, setRouteName] = useState(null);
-  const { showForm, setShowForm } = useContext(Context);
+  const {
+    showForm,
+    setShowForm,
+    setTasks,
+  } = useContext(Context);
 
   const handleSubmit = (data) => {
-    console.log(data)
+    /* insert new data in todo key nested object */
+    setTasks(prev => ({
+      ...prev,
+      todo: ({
+        ...prev.todo, data: [...prev.todo.data, data]
+      })
+    }));
+
+    /* close form */
+    setShowForm(false);
   }
-  
+
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content"/>
