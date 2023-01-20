@@ -38,14 +38,16 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#DDDDDD",
         borderRadius: 5,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        marginBottom: 15
     },
     inputMulti: {
         borderWidth: 1,
         textAlignVertical: 'top',
         borderColor: "#DDDDDD",
         borderRadius: 5,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        marginBottom: 15
     },
     button: (color) => ({
         backgroundColor: color,
