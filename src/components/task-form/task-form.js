@@ -24,7 +24,7 @@ const TaskForm = (props) => {
     const descriptionRef = useRef();
 
     const onHide = () => {
-        setShow(prev => ({...prev, show: !prev.show}))
+        setShow(!show)
     }
 
     const handleSubmit = () => {
