@@ -11,13 +11,13 @@ const {width} = Dimensions.get('window');
 
 const TabBar = ({state, navigation, descriptors, activeColor}) => {
   const { colors } = useTheme();
-  const {setCreateTask} = useContext(Context);
+  const {setShowForm} = useContext(Context);
   const activeTabIndicator = useRef(new Animated.Value(0)).current;
   const tabs = state.routes;
 
   const onTabPress = (route) => {
     if(route.name === "Create Task")
-      return setCreateTask(true)
+      return setShowForm(true)
 
     navigation.navigate(route.name);
   };

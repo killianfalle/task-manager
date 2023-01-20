@@ -1,9 +1,10 @@
 import { useTheme } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
+import { styles } from './styles';
+
 import ChevronUp from '../../assets/icons/svg/chevron-up-icon';
 import ChevronDown from '../../assets/icons/svg/chevron-down-icon';
-import { styles } from './styles';
 
 export const TaskSection = ({item}) => {
     const {colors} = useTheme();
@@ -22,7 +23,7 @@ export const TaskSection = ({item}) => {
   
     const height = animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, 300],
+      outputRange: [0, 300]
     });
   
     return (

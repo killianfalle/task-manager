@@ -2,13 +2,13 @@ import React, { createContext, useState } from "react";
 
 export const Context = createContext();
 export const ContextProvider = ({ initials, children }) => {
-  const [createTask, setCreateTask] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <Context.Provider
       value={{
-        createTask,
-        setCreateTask
+        showForm,
+        setShowForm
       }}
     >
       {children}
