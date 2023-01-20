@@ -23,10 +23,6 @@ const TaskForm = (props) => {
     const titleRef = useRef();
     const descriptionRef = useRef();
 
-    const onHide = () => {
-        setShow(!show)
-    }
-
     const handleSubmit = () => {
         const params = {
             title: titleRef.current.value || '',
@@ -43,13 +39,12 @@ const TaskForm = (props) => {
                 transparent={true}
                 visible={show}
                 style={{margin: 0}}
-                onRequestClose={() => onHide(!show)}>
-                
+                onRequestClose={() => setShow(!show)}>
                 <SafeAreaView style={styles.wrapper}>
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={styles.closeIcon(theme.secondary)}
-                            onPress={() => onHide(false)}>
+                            onPress={() => setShow(false)}>
                             <CloseIcon color={theme.white}/>
                         </TouchableOpacity>
                     </View>
