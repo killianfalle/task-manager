@@ -1,10 +1,8 @@
 const theme = {
-    primary: "#07539F",
-    secondary: "#F3CC23",
-    tertiary: "#398700",
+    primary: "#6ECCAF",
+    secondary: "#344D67",
+    tertiary: "#ADE792",
     accenta: "#413232",
-    accentb: "#F7F7FF",
-    logoAccenta: "#8C775F",
     alert: "#EF0000",
     info: "#0067C5",
     caution: "#FFD517",

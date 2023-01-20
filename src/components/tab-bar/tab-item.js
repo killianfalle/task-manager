@@ -30,7 +30,7 @@ const TabItem = ({
       onPress={() => onTabPress(route)}
       onLongPress={() => onTabLongPress(route)}
       style={styles.tabItem(bottomTabWidth, tabs, isActive, route.name)}>
-      <View style={styles.tabIconContainer(route.name, colors.accenta)}>
+      <View style={styles.tabIconContainer(route.name, colors.secondary)}>
         {options.icon({color: colors.white, size: scaleFontSize(21)})}
       </View>
 
