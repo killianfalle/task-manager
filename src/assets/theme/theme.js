@@ -1,4 +1,4 @@
-const appColors = {
+const theme = {
     primary: "#07539F",
     secondary: "#F3CC23",
     tertiary: "#398700",
@@ -15,4 +15,4 @@ const appColors = {
     red: "#DC1254",
 }
 
-export default appColors;
+export default theme;

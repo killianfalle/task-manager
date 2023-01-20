@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { StatusBar} from 'react-native';
 import { navigationRef } from './src/components/root-navigation/root-navigation';
 import Tabs from './src/navigation/bottom-tabs';
-import appColors from './src/assets/colors/colors';
+import theme from './src/assets/theme/theme';
 
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const siteTheme = {
   ...DefaultTheme,
-  colors: appColors
+  colors: theme
 }
 
 const App = () => {
