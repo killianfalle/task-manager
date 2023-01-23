@@ -1,9 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const allowedKeys = [
-  'access_token',
-  'user_data',
-  'client_token'
+  'tasks',
 ];
 
 const unallowedKeyErrorMsg = 'The key is not included in the allowed keys.';

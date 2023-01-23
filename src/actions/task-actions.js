@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../stores/context/context";
 
 export default function useTaskActions () {
@@ -55,6 +55,7 @@ export default function useTaskActions () {
                 data: updatedTask
             })
         }));
+
     }
 
     const handleSubmit = (data, type = "create") => {
@@ -86,6 +87,27 @@ export default function useTaskActions () {
 
         handleFormSubmission("Task removed")
     }
+
+    const getTasksFromStorage = async() => {
+        const tasksFromStorage = await asyncstorage.get('tasks');
+
+        if(tasksFromStorage?.value){
+            const taskData = JSON.parse(tasksFromStorage.value);
+            setTasks(taskData);
+        }
+    }
+
+    const saveTasksOnStorage = async() => {
+        await asyncstorage.set('tasks', JSON.stringify(tasks));
+    }
+
+    useEffect(() => {
+        getTasksFromStorage();
+    }, []);
+
+    useEffect(() => {
+        saveTasksOnStorage();
+    }, [tasks]);
 
     return {
         handleSubmit,
