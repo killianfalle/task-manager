@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   }),
   selectedTabMover: (theme) => ({
     backgroundColor: theme.white,
-    width: width * 0.045,
-    height: '4%',
+    width: width * 0.06,
+    height: '5%',
     borderBottomLeftRadius: 2,
     borderBottomRightRadius: 2,
   }),
