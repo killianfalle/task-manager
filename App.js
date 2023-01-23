@@ -8,6 +8,7 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import TaskForm from './src/components/task-form/task-form';
 import { Context } from './src/stores/context/context';
+import Toast from './src/components/toast/toast';
 
 const siteTheme = {
   ...DefaultTheme,
@@ -20,6 +21,8 @@ const App = () => {
     showForm,
     setShowForm,
     setTasks,
+    toast,
+    setToast
   } = useContext(Context);
 
   const handleSubmit = (data) => {
@@ -29,6 +32,13 @@ const App = () => {
       todo: ({
         ...prev.todo, data: [...prev.todo.data, data]
       })
+    }));
+
+    setToast(prev => ({
+      ...prev,
+      visible: true,
+      title: "Successfully created a new task",
+      type: "primary"
     }));
 
     /* close form */
@@ -50,6 +60,17 @@ const App = () => {
         show={showForm}
         setShow={setShowForm}
         onSubmit={handleSubmit}
+      />
+
+      <Toast 
+        theme={siteTheme.colors}
+        visible={toast.visible}
+        title={toast.title}
+        type={toast.type}
+        position={toast.position}
+        icon={toast.icon}
+        visibilityTime={toast.visibilityTime}
+        setVisible={(value) => setToast({...toast, visible: value})}
       />
     </SafeAreaProvider>
   );

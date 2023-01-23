@@ -14,13 +14,25 @@ export const ContextProvider = ({ initials, children }) => {
     }
   });
 
+  const [toast, setToast] = useState({
+    visible: false,
+    title: null,
+    type: "info",     // refer to defaultColors in "assets/theme/theme.js"
+    position: "top",  // top, bottom
+    visibilityTime: 3500,
+    icon: null,
+    onSubmit: () => {}
+  });
+
   return (
     <Context.Provider
       value={{
         showForm,
         setShowForm,
         tasks,
-        setTasks
+        setTasks,
+        toast,
+        setToast
       }}
     >
       {children}

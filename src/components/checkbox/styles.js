@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
         paddingVertical: 12
     },
     title: (isChecked) => ({
-        ...isChecked && {textDecorationLine: 'line-through'}, 
+        ...isChecked && {textDecorationLine: 'line-through'},
+        opacity: isChecked ? 0.65 : 1, 
         fontSize: 20,
         fontWeight: '500',
         marginLeft: 5

@@ -32,7 +32,11 @@ const Checkbox = (props) => {
             <TouchableOpacity
                 style={styles.titleContainer}
                 onPress={onPressLabel}>
-                <Text style={styles.title(isChecked)}>{label}</Text>
+                <Text
+                    style={styles.title(isChecked)}
+                    numberOfLines={1}>
+                    {label}
+                </Text>
             </TouchableOpacity>
         </View>
     );

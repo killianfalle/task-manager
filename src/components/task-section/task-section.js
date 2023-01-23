@@ -18,12 +18,12 @@ export const TaskSection = (props) => {
     } = props;
 
     const {colors} = useTheme();
-    const {tasks, setTasks} = useContext(Context);
+    const {tasks, setTasks, setToast} = useContext(Context);
     const [isVisible, setIsVisible] = useState(true);
     const animation = useRef(new Animated.Value(1)).current;
 
     const handlePressCheck = (value, task) => {
-      const otherType = Object.keys(tasks).find(item => item != type)
+      const otherType = Object.keys(tasks).find(item => item != type);
       
       /* Removes the task from the current object type */
       setTasks(prev => ({
@@ -39,6 +39,13 @@ export const TaskSection = (props) => {
         [otherType]: ({
           ...prev[otherType], data: [...prev[otherType].data, task]
         })
+      }));
+
+      setToast(prev => ({
+        ...prev,
+        visible: true,
+        title: `Successfully moved to ${otherType} tasks`,
+        type: "primary"
       }));
     }
   
