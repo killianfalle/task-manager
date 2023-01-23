@@ -2,7 +2,11 @@ import React, { createContext, useState } from "react";
 
 export const Context = createContext();
 export const ContextProvider = ({ initials, children }) => {
-  const [showForm, setShowForm] = useState(false);  // form modal
+  const [showForm, setShowForm] = useState({
+    show: false,
+    data: null
+  });  // form modal
+
   const [tasks, setTasks] = useState({              // task data
     todo: {
       title: 'To do',

@@ -20,6 +20,7 @@ const App = () => {
   const {
     showForm,
     setShowForm,
+    tasks,
     setTasks,
     toast,
     setToast
@@ -42,7 +43,34 @@ const App = () => {
     }));
 
     /* close form */
-    setShowForm(false);
+    setShowForm(prev => ({...prev, show: false, data: null}));
+  }
+
+  const handleDelete = (data) => {
+    /* Finds the type ("completed" or "todo") based on the data's id */
+    const type = Object.keys(tasks).find((object) => {
+      return tasks[object].data.some((item) => {
+        return item.id === data.id;
+      });
+    });
+    
+    /* Removes the task from the current object type */
+    setTasks(prev => ({
+      ...prev,
+      [type]: ({
+        ...prev[type], data: tasks[type].data.filter(item => item.id !== data.id)
+      })
+    }));
+
+    setToast(prev => ({
+      ...prev,
+      visible: true,
+      title: "Task removed",
+      type: "primary"
+    }));
+
+    /* close form */
+    setShowForm(prev => ({...prev, show: false, data: null}));
   }
 
   return (
@@ -57,9 +85,11 @@ const App = () => {
 
       <TaskForm
         theme={siteTheme.colors}
-        show={showForm}
+        show={showForm.show}
+        data={showForm.data}
         setShow={setShowForm}
         onSubmit={handleSubmit}
+        onDelete={handleDelete}
       />
 
       <Toast 

@@ -17,8 +17,10 @@ const TaskForm = (props) => {
     const {
         theme,
         show,
+        data,
         setShow,
-        onSubmit
+        onSubmit,
+        onDelete
     } = props;
 
     /**  
@@ -28,6 +30,10 @@ const TaskForm = (props) => {
     */
     const titleRef = useRef();
     const descriptionRef = useRef();
+
+    const onHide = () => {
+        setShow(prev => ({...prev, show: false, data: null}));
+    }
 
     const handleSubmit = () => {
         /* values here already updates from input component */
@@ -50,12 +56,12 @@ const TaskForm = (props) => {
                 transparent={true}
                 visible={show}
                 style={{margin: 0}}
-                onRequestClose={() => setShow(!show)}>
+                onRequestClose={onHide}>
                 <SafeAreaView style={styles.wrapper}>
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={styles.closeIcon(theme.secondary)}
-                            onPress={() => setShow(false)}>
+                            onPress={onHide}>
                             <CloseIcon color={theme.white}/>
                         </TouchableOpacity>
                     </View>
@@ -74,9 +80,14 @@ const TaskForm = (props) => {
                         />
                     </View>
 
-                    <TouchableOpacity onPress={handleSubmit} style={styles.button(theme.primary)}>
-                        <Text style={styles.buttonText}>Create</Text>
-                    </TouchableOpacity>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => onDelete(data)} style={styles.button(theme.grey)}>
+                            <Text style={styles.buttonText}>Delete</Text>
+                        </TouchableOpacity> 
+                        <TouchableOpacity onPress={handleSubmit} style={styles.button(theme.primary)}>
+                            <Text style={styles.buttonText}>{data ? "Save" : "Create"}</Text>
+                        </TouchableOpacity> 
+                    </View>
                 </SafeAreaView>
             </Modal>
         </View>
@@ -86,6 +97,7 @@ const TaskForm = (props) => {
 TaskForm.propTypes = {
     theme: PropTypes.any,
     show: PropTypes.bool,
+    data: PropTypes.object,
     setShow: PropTypes.func,
     onSubmit: PropTypes.func
 };
@@ -93,8 +105,10 @@ TaskForm.propTypes = {
 TaskForm.defaultProps = {
     theme: null,
     show: false,
+    data: null,
     setShow: () => {},
-    onSubmit: () => {}
+    onSubmit: () => {},
+    onDelete: () => {}
 };
 
 export default TaskForm;

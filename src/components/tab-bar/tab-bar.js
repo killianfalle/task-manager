@@ -17,7 +17,7 @@ const TabBar = ({state, navigation, descriptors, activeColor}) => {
 
   const onTabPress = (route) => {
     if(route.name === "Create Task")
-      return setShowForm(true)
+      setShowForm(prev => ({...prev, show: true, data: null}));
 
     navigation.navigate(route.name);
   };

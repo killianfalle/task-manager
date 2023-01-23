@@ -85,7 +85,7 @@ export const TaskSection = (props) => {
                 fillColor={colors.primary}
                 unfillColor={colors.primary}
                 onPressCheck={(value) => handlePressCheck(value, task)}
-                onPressLabel={() => {}}
+                onPressLabel={() => onShowDetails(task)}
               />
             </View>
           ))}

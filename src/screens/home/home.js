@@ -5,10 +5,10 @@ import { TaskSection } from '../../components/task-section/task-section';
 import { Context } from '../../stores/context/context';
 
 const Home = () => {
-  const { tasks } = useContext(Context);
+  const { tasks, setShowForm } = useContext(Context);
 
   const handleShowDetails = (task) => {
-    console.log(task)
+    setShowForm(prev => ({...prev, show: true, data: task}));
   }
 
   return (

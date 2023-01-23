@@ -51,11 +51,18 @@ export const styles = StyleSheet.create({
     },
     button: (color) => ({
         backgroundColor: color,
+        flex: 1,
+        marginHorizontal: 5,
         borderRadius: 5
     }),
+    buttonContainer: {
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
     buttonText: {
         color: '#fff',
-        padding: 20,
+        padding: 15,
         fontWeight: 'bold',
         textTransform: 'uppercase',
         textAlign: 'center',
