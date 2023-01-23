@@ -20,10 +20,6 @@ export const styles = StyleSheet.create({
       fontSize: 21,
       fontWeight: 'bold',
     },
-    title: {
-      fontSize: 20,
-      padding: 20,
-    },
     headerContainer: {
         paddingVertical: 10,
         paddingHorizontal: 2,

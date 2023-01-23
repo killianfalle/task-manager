@@ -18,6 +18,7 @@ const Home = () => {
         {Object.keys(tasks).map((item, index ) => (
           <TaskSection
             key={index}
+            type={Object.keys(tasks)[index]}
             item={tasks[item]}
             onShowDetails={handleShowDetails}
           />

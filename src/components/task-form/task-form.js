@@ -11,6 +11,7 @@ import {
 import { styles } from '../../assets/styles/form-styles';
 import CloseIcon from '../../assets/icons/svg/close-icon';
 import Input from '../input/input';
+import { generateId } from '../../utils/generate-id';
 
 const TaskForm = (props) => {
     const {
@@ -31,8 +32,11 @@ const TaskForm = (props) => {
     const handleSubmit = () => {
         /* values here already updates from input component */
         const params = {
+            id: generateId(),
             title: titleRef.current.value || '',
-            description: descriptionRef.current.value || ''
+            description: descriptionRef.current.value || '',
+            created_at: new Date(),
+            updated_at: new Date()
         }
 
         /* sends back the params to the callback function */
