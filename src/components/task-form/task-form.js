@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -28,8 +28,8 @@ const TaskForm = (props) => {
      * useRef is powerful because it's persisted between renders. 
      * Unlike useState, useRef doesn't cause a component to re-render when the value or state changes. 
     */
-    const titleRef = useRef();
-    const descriptionRef = useRef();
+    const titleRef = useRef(null);
+    const descriptionRef = useRef(null);
 
     const onHide = () => {
         setShow(prev => ({...prev, show: false, data: null}));
@@ -48,6 +48,15 @@ const TaskForm = (props) => {
         /* sends back the params to the callback function */
         onSubmit(params);
     }
+
+    const setDefaultValues = () => {
+        titleRef.current.value = data.title;
+        descriptionRef.current.value = data.description;
+    }
+
+    useEffect(() => {
+        if(data) setDefaultValues();
+    }, [data])
 
     return (
         <View style={{position: 'relative'}}>
@@ -69,11 +78,13 @@ const TaskForm = (props) => {
                     <View style={styles.container}>
                         <Input
                             label="Title"
+                            defaultValue={data?.title || ""}
                             inputRef={titleRef}
                         />
 
                         <Input
                             label="Description"
+                            defaultValue={data?.description || ""}
                             inputRef={descriptionRef}
                             multiline
                             numberOfLines={5}

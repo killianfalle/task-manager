@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -11,6 +11,7 @@ const Input = (props) => {
     const {
         inputRef,
         label,
+        defaultValue,
         multiline,
         numberOfLines
     } = props;
@@ -24,6 +25,7 @@ const Input = (props) => {
             <Text style={styles.label}>{label}</Text>
             <TextInput
                 ref={inputRef}
+                defaultValue={defaultValue}
                 style={multiline ? styles.inputMulti : styles.input}
                 multiline={multiline}
                 numberOfLines={numberOfLines}
@@ -35,6 +37,7 @@ const Input = (props) => {
 
 Input.propTypes = {
     inputRef: PropTypes.any,
+    defaultValue: PropTypes.string,
     label: PropTypes.string,
     multiline: PropTypes.bool,
     numberOfLines: PropTypes.number
@@ -42,6 +45,7 @@ Input.propTypes = {
   
 Input.defaultProps = {
     inputRef: null,
+    defaultValue: "",
     label: "",
     multiline: false,
     numberOfLines: 1
