@@ -26,5 +26,13 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between'
+    },
+    titleContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    counter:{
+      fontSize: 14,
+      marginLeft: 5
     }
 });

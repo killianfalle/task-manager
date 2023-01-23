@@ -70,7 +70,11 @@ export const TaskSection = (props) => {
     return (
       <View style={{flex: 1, overflow: 'hidden'}}>
         <View style={styles.headerContainer}>
-            <Text style={styles.header}>{item.title}</Text>
+            <View style={styles.titleContainer}>
+              <Text style={styles.header}>{item.title}</Text>
+              <Text style={styles.counter}>({item?.data.length})</Text>
+            </View>
+
             <TouchableOpacity onPress={toggleVisibility}>
                 {isVisible ? <ChevronUp color={colors.secondary}/> : <ChevronDown color={colors.secondary}/>}
             </TouchableOpacity>

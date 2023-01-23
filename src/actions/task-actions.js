@@ -88,6 +88,7 @@ export default function useTaskActions () {
         handleFormSubmission("Task removed")
     }
 
+    /* Gets tasks from storage and save it on the context tasks data */
     const getTasksFromStorage = async() => {
         const tasksFromStorage = await asyncstorage.get('tasks');
 
@@ -97,6 +98,7 @@ export default function useTaskActions () {
         }
     }
 
+    /* Saves on storage whenever there's an update on tasks */
     const saveTasksOnStorage = async() => {
         await asyncstorage.set('tasks', JSON.stringify(tasks));
     }
