@@ -67,5 +67,10 @@ export const styles = StyleSheet.create({
         textTransform: 'uppercase',
         textAlign: 'center',
         fontSize: scaleFontSize(16)
+    },
+    validation: {
+        marginTop: -10,
+        marginBottom: 10,
+        color: "#EF0000"
     }
 });

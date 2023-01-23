@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -12,41 +12,58 @@ import { styles } from '../../assets/styles/form-styles';
 import CloseIcon from '../../assets/icons/svg/close-icon';
 import Input from '../input/input';
 import { generateId } from '../../utils/generate-id';
+import { Context } from '../../stores/context/context';
+import useTaskActions from '../../actions/task-actions';
 
 const TaskForm = (props) => {
-    const {
-        theme,
-        show,
-        data,
-        setShow,
-        onSubmit,
-        onDelete
-    } = props;
-
-    /**  
+     /**  
      * used useRef instead of useState
      * useRef is powerful because it's persisted between renders. 
      * Unlike useState, useRef doesn't cause a component to re-render when the value or state changes. 
     */
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
+    const { theme } = props;
+    const [validation, setValidation] = useState({
+        title: ""
+    });
+
+    const {
+        handleSubmit,
+        handleDelete
+    } = useTaskActions();
+
+    const {
+        showForm,
+        setShowForm,
+    } = useContext(Context);
+   
+    const show = showForm.show;
+    const data = showForm.data;
 
     const onHide = () => {
-        setShow(prev => ({...prev, show: false, data: null}));
+        setShowForm(prev => ({...prev, show: false, data: null}));
+        setValidation(prev => ({...prev, title: ""}))
     }
 
-    const handleSubmit = () => {
+    const onSubmit = () => {
+        const type = data ? "update" : "create";  // depending if save or update task
+
+        /* Checks for validation */
+        if(!titleRef.current.value)
+            return setValidation(prev => ({...prev, title: "Title is required"}))
+
         /* values here already updates from input component */
         const params = {
-            id: generateId(),
+            id: data?.id || generateId(),
             title: titleRef.current.value || '',
             description: descriptionRef.current.value || '',
-            created_at: new Date(),
+            created_at: data?.created_at || new Date(),
             updated_at: new Date()
         }
 
         /* sends back the params to the callback function */
-        onSubmit(params);
+        handleSubmit(params, type);
     }
 
     const setDefaultValues = () => {
@@ -56,10 +73,10 @@ const TaskForm = (props) => {
 
     useEffect(() => {
         if(data) setDefaultValues();
-    }, [data])
+    }, [data]);
 
     return (
-        <View style={{position: 'relative'}}>
+        <View style={{position: 'relative'}}>     
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -77,9 +94,11 @@ const TaskForm = (props) => {
 
                     <View style={styles.container}>
                         <Input
-                            label="Title"
+                            label="Title*"
                             defaultValue={data?.title || ""}
                             inputRef={titleRef}
+                            validationMessage={validation.title}
+                            setValidation={setValidation}
                         />
 
                         <Input
@@ -92,10 +111,12 @@ const TaskForm = (props) => {
                     </View>
 
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity onPress={() => onDelete(data)} style={styles.button(theme.grey)}>
-                            <Text style={styles.buttonText}>Delete</Text>
-                        </TouchableOpacity> 
-                        <TouchableOpacity onPress={handleSubmit} style={styles.button(theme.primary)}>
+                        {data && (
+                            <TouchableOpacity onPress={() => handleDelete(data)} style={styles.button(theme.grey)}>
+                                <Text style={styles.buttonText}>Delete</Text>
+                            </TouchableOpacity> 
+                        )}
+                        <TouchableOpacity onPress={onSubmit} style={styles.button(theme.primary)}>
                             <Text style={styles.buttonText}>{data ? "Save" : "Create"}</Text>
                         </TouchableOpacity> 
                     </View>
@@ -107,19 +128,10 @@ const TaskForm = (props) => {
 
 TaskForm.propTypes = {
     theme: PropTypes.any,
-    show: PropTypes.bool,
-    data: PropTypes.object,
-    setShow: PropTypes.func,
-    onSubmit: PropTypes.func
 };
   
 TaskForm.defaultProps = {
     theme: null,
-    show: false,
-    data: null,
-    setShow: () => {},
-    onSubmit: () => {},
-    onDelete: () => {}
 };
 
 export default TaskForm;

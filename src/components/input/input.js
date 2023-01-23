@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -13,11 +13,14 @@ const Input = (props) => {
         label,
         defaultValue,
         multiline,
-        numberOfLines
+        numberOfLines,
+        validationMessage,
+        setValidation
     } = props;
 
     const onChangeText = (value) => {
         inputRef.current.value = value;
+        setValidation(prev => ({...prev, title: ""}))
     }
 
     return (
@@ -31,6 +34,7 @@ const Input = (props) => {
                 numberOfLines={numberOfLines}
                 onChangeText={(value) => onChangeText(value)}
             />
+            <Text style={styles.validation}>{validationMessage}</Text>
         </View>
     );
 };
@@ -40,7 +44,9 @@ Input.propTypes = {
     defaultValue: PropTypes.string,
     label: PropTypes.string,
     multiline: PropTypes.bool,
-    numberOfLines: PropTypes.number
+    numberOfLines: PropTypes.number,
+    validationMessage: PropTypes.string,
+    setValidation: PropTypes.func,
 };
   
 Input.defaultProps = {
@@ -48,7 +54,9 @@ Input.defaultProps = {
     defaultValue: "",
     label: "",
     multiline: false,
-    numberOfLines: 1
+    numberOfLines: 1,
+    validationMessage: "",
+    setValidation: () => {}
 };
 
 export default Input;
