@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
     Text,
@@ -9,66 +9,59 @@ import {
     Platform,
 } from 'react-native';
 import styles from './styles';
+import { Context } from '../../stores/context/context';
 
 const {height} = Dimensions.get('screen');
-const Toast = ({
-    theme,
-    title,
-    visible,
-    setVisible,
-    position,
-    type,
-    icon,
-    visibilityTime
-}) => {
+const Toast = ({theme}) => {
+    const {toast, setToast} = useContext(Context);
     const [hide, setHide] = useState(false);
-    const [slideAnimation] = useState(new Animated.Value(height * (position === 'top' ? -0.1 : 1.05)));
+    const [slideAnimation] = useState(new Animated.Value(height * (toast.position === 'top' ? -0.1 : 1.05)));
 
     const setAnimations = () => {
         const topValue = Platform.OS === "android" ? 0.02 : 0.065;
 
         Animated.spring(slideAnimation, {
-            toValue: height * (position === 'top' ? topValue : 0.8),
+            toValue: height * (toast.position === 'top' ? topValue : 0.8),
             useNativeDriver: true,
             duration: 350
         }).start();
 
-        if(visible) hideToast();
+        if(toast.visible) hideToast();
     }
 
     const hideToast = (forceHide = false) => {
         setTimeout(() => {
             Animated.spring(slideAnimation, {
-                toValue: height * (position === 'top' ? -0.1 : 1.05),
+                toValue: height * (toast.position === 'top' ? -0.1 : 1.05),
                 useNativeDriver: true,
                 duration: 750
             }).start();
 
             setHide(true);
-        }, forceHide ? 0 : visibilityTime);
+        }, forceHide ? 0 : toast.visibilityTime);
     }
 
     useEffect(() => {
         if(!hide) return;
 
-        setVisible(false);
+        setToast({...toast, visible: false})
         setHide(false);
     }, [hide])
 
     useEffect(() => {
-        if(!visible) return;
+        if(!toast.visible) return;
 
         setAnimations();
-    }, [visible]);
+    }, [toast.visible]);
 
     return (
         <Animated.View style={styles.wrapper(slideAnimation)}>
             <TouchableOpacity
                 activeOpacity={0.9}
-                style={styles.container(type, theme)}
+                style={styles.container(toast.type, theme)}
                 onPress={() => hideToast(true)}>
-                <View style={{marginRight: 10}}>{icon}</View>
-                <Text style={styles.title}>{title}</Text>
+                <View style={{marginRight: 10}}>{toast.icon}</View>
+                <Text style={styles.title}>{toast.title}</Text>
             </TouchableOpacity>
         </Animated.View>
     );
@@ -76,24 +69,10 @@ const Toast = ({
 
 Toast.propTypes = {
     theme: PropTypes.any,
-    title: PropTypes.string,
-    visible: PropTypes.bool,
-    visibilityTime: PropTypes.number,
-    setVisible: PropTypes.func,
-    position: PropTypes.string,
-    type: PropTypes.string,
-    icon: PropTypes.any,
 };
   
 Toast.defaultProps = {
     theme: null,
-    title: null,
-    visible: false,
-    position: "top",
-    type: "info",
-    visibilityTime: 2500,
-    icon: null,
-    setVisible: () => {}
 };
 
 export default Toast;
