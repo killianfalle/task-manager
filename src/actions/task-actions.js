@@ -6,7 +6,7 @@ export default function useTaskActions () {
         setShowForm,
         tasks,
         setTasks,
-        setToast
+        setToast,
     } = useContext(Context);
 
     const handleFormSubmission = (title) => {
@@ -17,6 +17,7 @@ export default function useTaskActions () {
             title: title,
             type: "primary"
         }));
+
 
         /* close form */
         setShowForm(prev => ({...prev, show: false, data: null}));

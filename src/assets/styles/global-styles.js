@@ -1,11 +1,4 @@
-import { Dimensions, Platform, StyleSheet } from "react-native";
-
-const {width, fontScale} = Dimensions.get('window');
-const scaleFontSize = (fontSize) => {
-    const ratio = fontSize / fontScale; // get ratio based on your standard scale 
-    const newSize = ratio;
-    return newSize; 
-}
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     wrapper: {
@@ -15,4 +8,27 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    filterContainer: {
+        alignItems: "flex-end",
+        marginRight: 8,
+        marginBottom: 5,
+        zIndex: 2,
+        elevation: 2
+    },
+    sortWrapper: {
+        borderWidth: 0,
+        backgroundColor: 'transparent',
+        opacity: 0
+    },
+    sortContainer: {
+        maxWidth: '55%',
+        position: 'absolute',
+        right: 0,
+        top: -10
+    },
+    dropdownContainer: {
+        borderWidth: 1,
+        borderColor: "#DDDDDD",
+        borderRadius: 5,
+    }
 });

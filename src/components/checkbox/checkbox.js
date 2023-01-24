@@ -18,6 +18,8 @@ const Checkbox = (props) => {
         onPressLabel
     } = props;
 
+    const priority = ['High', 'Medium', 'Low'];
+
     return (
         <View style={styles.wrapper}>
             {/* Checkmark */}
@@ -44,7 +46,7 @@ const Checkbox = (props) => {
             {icon && (
                 <View>
                     <TouchableOpacity style={styles.icon} onPress={onPressLabel}>
-                        <Text style={styles.priorityText}>{item.priority}</Text>
+                        <Text style={styles.priorityText}>{priority[item.priority - 1]}</Text>
                         {icon}
                     </TouchableOpacity>
                 </View>

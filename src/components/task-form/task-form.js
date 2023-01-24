@@ -25,7 +25,7 @@ const TaskForm = (props) => {
     */
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
-    const [priority, setPriority] = useState('low');
+    const [priority, setPriority] = useState(3);
     const { theme } = props;
     const [validation, setValidation] = useState({
         title: ""
@@ -45,8 +45,8 @@ const TaskForm = (props) => {
     const data = showForm.data;
 
     const onHide = () => {
+        setPriority(3);
         setShowForm(prev => ({...prev, show: false, data: null}));
-        setPriority('low');
         setValidation(prev => ({...prev, title: ""}))
     }
 
@@ -69,14 +69,14 @@ const TaskForm = (props) => {
 
         /* sends back the params to the callback function */
         handleSubmit(params, type);
+        setPriority(3);
     }
 
     const setDefaultValues = () => {
+        setPriority(data.priority)
         titleRef.current.value = data.title;
         descriptionRef.current.value = data.description;
-        setPriority(data.priority)
     }
-
 
     useEffect(() => {
         if(data) setDefaultValues();

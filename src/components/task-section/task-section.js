@@ -22,14 +22,14 @@ export const TaskSection = (props) => {
     } = props;
 
     const {colors} = useTheme();
-    const {tasks, setTasks, setToast} = useContext(Context);
+    const {tasks, setTasks, setToast, sortBy} = useContext(Context);
     const [isVisible, setIsVisible] = useState(true);
     const animation = useRef(new Animated.Value(1)).current;
-    const taskIcons = {
-      high: <ChevronHigh color={colors.alert}/>,
-      medium: <ChevronMedium color={colors.caution}/>,
-      low: <ChevronLow color={colors.primary}/>
-    }
+    const taskIcons = [
+      <ChevronHigh color={colors.alert}/>,
+      <ChevronMedium color={colors.caution}/>,
+      <ChevronLow color={colors.primary}/>
+    ]
 
     const handlePressCheck = (value, task) => {
       const otherType = Object.keys(tasks).find(item => item != type);
@@ -76,17 +76,23 @@ export const TaskSection = (props) => {
       outputRange: [0, height]    // use device's screen height
     });
 
+    /* Sorts the tasks data */
+    if(item)
+      item.data.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1)
+    
     return (
-      <View style={{flex: 1, overflow: 'hidden'}}>
+      <View style={{overflow: 'hidden'}}>
         <View style={styles.headerContainer}>
             <View style={styles.titleContainer}>
               <Text style={styles.header}>{item.title}</Text>
               <Text style={styles.counter}>({item?.data.length})</Text>
             </View>
 
-            <TouchableOpacity onPress={toggleVisibility}>
+            {item?.data.length > 0 && (
+              <TouchableOpacity onPress={toggleVisibility}>
                 {isVisible ? <ChevronUp color={colors.secondary}/> : <ChevronDown color={colors.secondary}/>}
-            </TouchableOpacity>
+              </TouchableOpacity>
+            )}
         </View>
     
         <Animated.View style={{ maxHeight: layoutHeight }}>
@@ -97,7 +103,7 @@ export const TaskSection = (props) => {
                 isChecked={type === "completed"}    // Checks if item is on "todo" or "completed" object
                 fillColor={colors.primary}
                 unfillColor={colors.primary}
-                icon={taskIcons[task.priority]}
+                icon={taskIcons[task.priority - 1]}
                 onPressCheck={(value) => handlePressCheck(value, task)}
                 onPressLabel={() => onShowDetails(task)}
               />

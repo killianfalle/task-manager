@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const Context = createContext();
 export const ContextProvider = ({ initials, children }) => {
+  const [sortBy, setSortBy] = useState('created_at');
   const [showForm, setShowForm] = useState({
     show: false,
     data: null
@@ -36,7 +37,9 @@ export const ContextProvider = ({ initials, children }) => {
         tasks,
         setTasks,
         toast,
-        setToast
+        setToast,
+        sortBy,
+        setSortBy
       }}
     >
       {children}

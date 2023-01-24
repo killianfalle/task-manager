@@ -20,14 +20,10 @@ const PriorityPicker = (props) => {
 
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState([
-        {label: 'High', value: 'high', icon: () => <ChevronHigh color={theme.alert}/>},
-        {label: 'Medium', value: 'medium', icon: () => <ChevronMedium color={theme.caution}/>},
-        {label: 'Low', value: 'low', icon: () => <ChevronLow color={theme.primary}/>},
+        {label: 'High', value: 1, icon: () => <ChevronHigh color={theme.alert}/>},
+        {label: 'Medium', value: 2, icon: () => <ChevronMedium color={theme.caution}/>},
+        {label: 'Low', value: 3, icon: () => <ChevronLow color={theme.primary}/>},
     ]);
-
-    const handleChangeValue = (value) => {
-        onChangeValue(value);
-    }
 
     return (
         <View>
@@ -39,7 +35,7 @@ const PriorityPicker = (props) => {
                 items={items}
                 showTickIcon={false}
                 setOpen={setOpen}
-                setValue={handleChangeValue}
+                setValue={onChangeValue}
                 setItems={setItems}
                 style={styles.picker}
                 dropDownContainerStyle={styles.picker}
@@ -50,13 +46,13 @@ const PriorityPicker = (props) => {
 
 PriorityPicker.propTypes = {
     theme: PropTypes.any,
-    value: PropTypes.string,
+    value: PropTypes.number,
     onChangeValue: PropTypes.func
 };
   
 PriorityPicker.defaultProps = {
     theme: null,
-    value: "",
+    value: 1,
     onChangeValue: () => {}
 };
 
