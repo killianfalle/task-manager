@@ -17,8 +17,9 @@ const Home = () => {
       <ScrollView>
         <Filter />
 
-        {/* Use Object.keys() to convert it to array to map the data from context */}
-        {Object.keys(tasks).map((item, index ) => (
+       <View style={{minHeight: 250}}>
+         {/* Use Object.keys() to convert it to array to map the data from context */}
+         {Object.keys(tasks).map((item, index ) => (
           <TaskSection
             key={index}
             type={Object.keys(tasks)[index]}
@@ -26,6 +27,7 @@ const Home = () => {
             onShowDetails={handleShowDetails}
           />
         ))}
+       </View>
       </ScrollView>
     </View>
   );
