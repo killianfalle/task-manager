@@ -19,7 +19,6 @@ const PriorityPicker = (props) => {
     } = props;
 
     const [open, setOpen] = useState(false);
-    const [pickerValue, setPickerValue] = useState(value);
     const [items, setItems] = useState([
         {label: 'High', value: 'high', icon: () => <ChevronHigh color={theme.alert}/>},
         {label: 'Medium', value: 'medium', icon: () => <ChevronMedium color={theme.caution}/>},
@@ -27,7 +26,6 @@ const PriorityPicker = (props) => {
     ]);
 
     const handleChangeValue = (value) => {
-        setPickerValue(value);
         onChangeValue(value);
     }
 
@@ -37,7 +35,7 @@ const PriorityPicker = (props) => {
             <DropDownPicker
                 placeholder=""
                 open={open}
-                value={pickerValue}
+                value={value}
                 items={items}
                 showTickIcon={false}
                 setOpen={setOpen}

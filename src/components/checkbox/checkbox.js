@@ -42,9 +42,11 @@ const Checkbox = (props) => {
 
             {/* Icon */}
             {icon && (
-                <View style={styles.icon}>
-                    <Text style={styles.priorityText}>{item.priority}</Text>
-                    {icon}
+                <View>
+                    <TouchableOpacity style={styles.icon} onPress={onPressLabel}>
+                        <Text style={styles.priorityText}>{item.priority}</Text>
+                        {icon}
+                    </TouchableOpacity>
                 </View>
             )}
             

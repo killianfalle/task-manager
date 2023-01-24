@@ -77,6 +77,7 @@ const TaskForm = (props) => {
         setPriority(data.priority)
     }
 
+
     useEffect(() => {
         if(data) setDefaultValues();
     }, [data]);
