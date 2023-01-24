@@ -8,10 +8,10 @@ export const styles = StyleSheet.create({
       marginVertical: 5,
       shadowOffset: {
         width: 0,
-        height: 5,
+        height: 0,
       },
-      shadowOpacity: 0.4,
-      shadowRadius: 6,
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     
       //Android
       elevation: 3,

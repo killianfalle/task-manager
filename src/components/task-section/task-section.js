@@ -85,7 +85,7 @@ export const TaskSection = (props) => {
         <View>
           <TouchableOpacity onPress={toggleVisibility} style={styles.headerContainer}>
             {item?.data.length > 0 && (
-              isVisible ? <ArrowDown color={colors.secondary}/> : <ArrowUp color={colors.secondary}/>
+              isVisible ? <ArrowUp color={colors.secondary}/> : <ArrowDown color={colors.secondary}/>
             )}
             
             <View style={styles.titleContainer}>

@@ -91,51 +91,53 @@ const TaskForm = (props) => {
                 style={{margin: 0}}
                 onRequestClose={onHide}>
                 <SafeAreaView style={styles.wrapper}>
-                    <View style={styles.header(data)}>
-                        <View style={styles.closeContainer}>
-                            <TouchableOpacity
-                                style={styles.closeIcon(theme.secondary)}
-                                onPress={onHide}>
-                                <CloseIcon color={theme.white}/>
-                            </TouchableOpacity>
+                    <View style={{padding: 24, flex: 1}}>
+                        <View style={styles.header(data)}>
+                            <View style={styles.closeContainer}>
+                                <TouchableOpacity
+                                    style={styles.closeIcon(theme.secondary)}
+                                    onPress={onHide}>
+                                    <CloseIcon color={theme.white}/>
+                                </TouchableOpacity>
+                            </View>
+
+                            {!data && <Text style={styles.formTitle}>Add a task</Text>}
+                        </View>
+                        
+                        <View style={styles.container}>
+                            <Input
+                                label="Title*"
+                                defaultValue={data?.title || ""}
+                                inputRef={titleRef}
+                                validationMessage={validation.title}
+                                setValidation={setValidation}
+                            />
+
+                            <Input
+                                label="Description"
+                                defaultValue={data?.description || ""}
+                                inputRef={descriptionRef}
+                                multiline
+                                numberOfLines={5}
+                            />
+
+                            <PriorityPicker
+                                theme={theme}
+                                value={priority}
+                                onChangeValue={setPriority}
+                            />
                         </View>
 
-                        {!data && <Text style={styles.formTitle}>Add a task</Text>}
-                    </View>
-                    
-                    <View style={styles.container}>
-                        <Input
-                            label="Title*"
-                            defaultValue={data?.title || ""}
-                            inputRef={titleRef}
-                            validationMessage={validation.title}
-                            setValidation={setValidation}
-                        />
-
-                        <Input
-                            label="Description"
-                            defaultValue={data?.description || ""}
-                            inputRef={descriptionRef}
-                            multiline
-                            numberOfLines={5}
-                        />
-
-                        <PriorityPicker
-                            theme={theme}
-                            value={priority}
-                            onChangeValue={setPriority}
-                        />
-                    </View>
-
-                    <View style={styles.buttonContainer}>
-                        {data && (
-                            <TouchableOpacity onPress={() => handleDelete(data)} style={styles.button(theme.grey)}>
-                                <Text style={styles.buttonText}>Delete</Text>
+                        <View style={styles.buttonContainer}>
+                            {data && (
+                                <TouchableOpacity onPress={() => handleDelete(data)} style={styles.button(theme.grey)}>
+                                    <Text style={styles.buttonText}>Delete</Text>
+                                </TouchableOpacity> 
+                            )}
+                            <TouchableOpacity onPress={onSubmit} style={styles.button(theme.primary)}>
+                                <Text style={styles.buttonText}>{data ? "Save" : "Create"}</Text>
                             </TouchableOpacity> 
-                        )}
-                        <TouchableOpacity onPress={onSubmit} style={styles.button(theme.primary)}>
-                            <Text style={styles.buttonText}>{data ? "Save" : "Create"}</Text>
-                        </TouchableOpacity> 
+                        </View>
                     </View>
                 </SafeAreaView>
             </Modal>

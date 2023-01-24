@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
+    Platform,
     TextInput,
     Text
 } from 'react-native';
@@ -31,7 +32,8 @@ const Input = (props) => {
                 defaultValue={defaultValue}
                 style={multiline ? styles.inputMulti : styles.input}
                 multiline={multiline}
-                numberOfLines={numberOfLines}
+                numberOfLines={Platform.OS === 'ios' ? null : numberOfLines}
+                minHeight={(Platform.OS === 'ios' && numberOfLines) ? (20 * numberOfLines) : null}
                 onChangeText={(value) => onChangeText(value)}
             />
             <Text style={styles.validation}>{validationMessage}</Text>

@@ -10,7 +10,6 @@ const scaleFontSize = (fontSize) => {
 export const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        padding: 24,
         backgroundColor: '#fff'
     },
     container: {
@@ -49,7 +48,8 @@ export const styles = StyleSheet.create({
         borderColor: "#DDDDDD",
         borderRadius: 5,
         paddingHorizontal: 10,
-        marginBottom: 15
+        marginBottom: 15,
+        padding: 10
     },
     picker: {
         borderWidth: 1,
@@ -62,7 +62,8 @@ export const styles = StyleSheet.create({
         borderColor: "#DDDDDD",
         borderRadius: 5,
         paddingHorizontal: 10,
-        marginBottom: 15
+        marginBottom: 15,
+        paddingVertical: 10
     },
     button: (color) => ({
         backgroundColor: color,

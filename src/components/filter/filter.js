@@ -17,7 +17,7 @@ const Home = () => {
   const { sortBy, setSortBy } = useContext(Context);
 
   return (
-    <View style={{position: 'relative'}}>
+    <View style={{position: 'relative', zIndex: 1}}>
         <TouchableOpacity style={styles.filterContainer} onPress={() => setOpen(!open)} activeOpacity={0}>
             <FilterIcon color={colors.secondary}/>
         </TouchableOpacity>

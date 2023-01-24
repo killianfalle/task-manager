@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     wrapper: {
@@ -17,14 +17,14 @@ export const styles = StyleSheet.create({
     },
     sortWrapper: {
         borderWidth: 0,
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         opacity: 0
     },
     sortContainer: {
-        maxWidth: '55%',
-        position: 'absolute',
+        maxWidth: Platform.OS === "android" ? "55%" : "65%",
+        position: "absolute",
         right: 0,
-        top: -10
+        top: -10,
     },
     dropdownContainer: {
         borderWidth: 1,
