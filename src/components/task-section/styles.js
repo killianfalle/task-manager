@@ -25,11 +25,11 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 2,
         flexDirection: 'row',
         alignContent: 'center',
-        justifyContent: 'space-between'
     },
     titleContainer: {
       flexDirection: 'row',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginLeft: 5
     },
     counter:{
       fontSize: 14,

@@ -7,8 +7,8 @@ import { styles } from './styles';
 import { Context } from '../../stores/context/context';
 import Checkbox from '../checkbox/checkbox';
 
-import ChevronUp from '../../assets/icons/svg/chevron-up-icon';
-import ChevronDown from '../../assets/icons/svg/chevron-down-icon';
+import ArrowDown from '../../assets/icons/svg/arrow-down';
+import ArrowUp from '../../assets/icons/svg/arrow-up';
 import ChevronLow from '../../assets/icons/svg/chevron-low';
 import ChevronMedium from '../../assets/icons/svg/chevron-medium';
 import ChevronHigh from '../../assets/icons/svg/chevron-high';
@@ -82,17 +82,17 @@ export const TaskSection = (props) => {
     
     return (
       <View style={{overflow: 'hidden'}}>
-        <View style={styles.headerContainer}>
+        <View>
+          <TouchableOpacity onPress={toggleVisibility} style={styles.headerContainer}>
+            {item?.data.length > 0 && (
+              isVisible ? <ArrowDown color={colors.secondary}/> : <ArrowUp color={colors.secondary}/>
+            )}
+            
             <View style={styles.titleContainer}>
               <Text style={styles.header}>{item.title}</Text>
               <Text style={styles.counter}>({item?.data.length})</Text>
             </View>
-
-            {item?.data.length > 0 && (
-              <TouchableOpacity onPress={toggleVisibility}>
-                {isVisible ? <ChevronUp color={colors.secondary}/> : <ChevronDown color={colors.secondary}/>}
-              </TouchableOpacity>
-            )}
+          </TouchableOpacity>
         </View>
     
         <Animated.View style={{ maxHeight: layoutHeight }}>
