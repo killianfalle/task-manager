@@ -8,12 +8,14 @@ import {
     Text
 } from 'react-native';
 
+import useTaskActions from '../../actions/task-actions';
 import { styles } from '../../assets/styles/form-styles';
-import CloseIcon from '../../assets/icons/svg/close-icon';
-import Input from '../input/input';
 import { generateId } from '../../utils/generate-id';
 import { Context } from '../../stores/context/context';
-import useTaskActions from '../../actions/task-actions';
+
+import Input from '../input/input';
+import PriorityPicker from '../priority-picker/priority-picker';
+import CloseIcon from '../../assets/icons/svg/close-icon';
 
 const TaskForm = (props) => {
      /**  
@@ -84,14 +86,18 @@ const TaskForm = (props) => {
                 style={{margin: 0}}
                 onRequestClose={onHide}>
                 <SafeAreaView style={styles.wrapper}>
-                    <View style={styles.header}>
-                        <TouchableOpacity
-                            style={styles.closeIcon(theme.secondary)}
-                            onPress={onHide}>
-                            <CloseIcon color={theme.white}/>
-                        </TouchableOpacity>
-                    </View>
+                    <View style={styles.header(data)}>
+                        <View style={styles.closeContainer}>
+                            <TouchableOpacity
+                                style={styles.closeIcon(theme.secondary)}
+                                onPress={onHide}>
+                                <CloseIcon color={theme.white}/>
+                            </TouchableOpacity>
+                        </View>
 
+                        {!data && <Text style={styles.formTitle}>Add a task</Text>}
+                    </View>
+                    
                     <View style={styles.container}>
                         <Input
                             label="Title*"
@@ -108,6 +114,8 @@ const TaskForm = (props) => {
                             multiline
                             numberOfLines={5}
                         />
+
+                        <PriorityPicker theme={theme}/>
                     </View>
 
                     <View style={styles.buttonContainer}>

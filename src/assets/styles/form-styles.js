@@ -16,14 +16,24 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    header: {
-        alignItems: 'flex-end',
-        paddingBottom: 15
+    header: (data) => ({
+        paddingBottom: data ? 50 : 15
+    }),
+    closeContainer: {
+        position: 'absolute',
+        right: 0,
+        zIndex: 1
+    },
+    formTitle: {
+        textAlign: 'center',
+        fontWeight: '400',
+        fontSize: 26,
+        marginTop: 5,
     },
     closeIcon: (color) => ({
         backgroundColor: color,
-        width: width * 0.1,
-        height: width * 0.1,
+        width: width * 0.08,
+        height: width * 0.08,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -40,6 +50,11 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 15
+    },
+    picker: {
+        borderWidth: 1,
+        borderColor: "#DDDDDD",
+        borderRadius: 5,
     },
     inputMulti: {
         borderWidth: 1,
