@@ -11,6 +11,10 @@ const Settings = () => {
     if(type === "show-completed-tasks"){
       return setSettings(prev => ({...prev, showCompletedTasks: !prev.showCompletedTasks}))
     }
+
+    if(type === "show-task-counter"){
+      return setSettings(prev => ({...prev, showTaskCounter: !prev.showTaskCounter}))
+    }
   }
 
   return (
@@ -23,6 +27,13 @@ const Settings = () => {
           onToggleSwitch={() => handleToggleSwitch("show-completed-tasks")}
           label="Show Completed Task"
           description="Option to show the list of completed tasks"
+        />
+
+        <Toggle
+          value={settings.showTaskCounter}
+          onToggleSwitch={() => handleToggleSwitch("show-task-counter")}
+          label="Show Total Number of Tasks"
+          description="Option to show/hide the total number of todo and completed tasks"
         />
       </View>
     </SafeAreaView>

@@ -30,7 +30,8 @@ export const ContextProvider = ({ initials, children }) => {
   });
 
   const [settings, setSettings] = useState({
-    showCompletedTasks: false,
+    showCompletedTasks: true,
+    showTaskCounter: true,
   });
 
   return (

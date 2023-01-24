@@ -22,7 +22,7 @@ export const TaskSection = (props) => {
     } = props;
 
     const {colors} = useTheme();
-    const {tasks, setTasks, setToast, sortBy} = useContext(Context);
+    const {tasks, setTasks, setToast, sortBy, settings} = useContext(Context);
     const [isVisible, setIsVisible] = useState(true);
     const animation = useRef(new Animated.Value(1)).current;
     const taskIcons = [
@@ -84,13 +84,11 @@ export const TaskSection = (props) => {
       <View style={{overflow: 'hidden'}}>
         <View>
           <TouchableOpacity onPress={toggleVisibility} style={styles.headerContainer}>
-            {item?.data.length > 0 && (
-              isVisible ? <ArrowUp color={colors.secondary}/> : <ArrowDown color={colors.secondary}/>
-            )}
+            {isVisible ? <ArrowUp color={colors.secondary}/> : <ArrowDown color={colors.secondary}/>}
             
             <View style={styles.titleContainer}>
               <Text style={styles.header}>{item.title}</Text>
-              <Text style={styles.counter}>({item?.data.length})</Text>
+              {settings.showTaskCounter ? <Text style={styles.counter}>({item?.data.length})</Text> : null}
             </View>
           </TouchableOpacity>
         </View>
