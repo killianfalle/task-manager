@@ -25,6 +25,7 @@ const TaskForm = (props) => {
     */
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
+    const [priority, setPriority] = useState('low');
     const { theme } = props;
     const [validation, setValidation] = useState({
         title: ""
@@ -45,6 +46,7 @@ const TaskForm = (props) => {
 
     const onHide = () => {
         setShowForm(prev => ({...prev, show: false, data: null}));
+        setPriority('low');
         setValidation(prev => ({...prev, title: ""}))
     }
 
@@ -60,6 +62,7 @@ const TaskForm = (props) => {
             id: data?.id || generateId(),
             title: titleRef.current.value || '',
             description: descriptionRef.current.value || '',
+            priority: priority,
             created_at: data?.created_at || new Date(),
             updated_at: new Date()
         }
@@ -71,6 +74,7 @@ const TaskForm = (props) => {
     const setDefaultValues = () => {
         titleRef.current.value = data.title;
         descriptionRef.current.value = data.description;
+        setPriority(data.priority)
     }
 
     useEffect(() => {
@@ -115,7 +119,11 @@ const TaskForm = (props) => {
                             numberOfLines={5}
                         />
 
-                        <PriorityPicker theme={theme}/>
+                        <PriorityPicker
+                            theme={theme}
+                            value={priority}
+                            onChangeValue={setPriority}
+                        />
                     </View>
 
                     <View style={styles.buttonContainer}>

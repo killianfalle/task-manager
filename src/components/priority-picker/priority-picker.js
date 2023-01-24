@@ -13,16 +13,23 @@ import ChevronHigh from '../../assets/icons/svg/chevron-high';
 
 const PriorityPicker = (props) => {
     const {
-        theme
+        theme,
+        value,
+        onChangeValue
     } = props;
 
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState('low');
+    const [pickerValue, setPickerValue] = useState(value);
     const [items, setItems] = useState([
         {label: 'High', value: 'high', icon: () => <ChevronHigh color={theme.alert}/>},
         {label: 'Medium', value: 'medium', icon: () => <ChevronMedium color={theme.caution}/>},
         {label: 'Low', value: 'low', icon: () => <ChevronLow color={theme.primary}/>},
     ]);
+
+    const handleChangeValue = (value) => {
+        setPickerValue(value);
+        onChangeValue(value);
+    }
 
     return (
         <View>
@@ -30,11 +37,11 @@ const PriorityPicker = (props) => {
             <DropDownPicker
                 placeholder=""
                 open={open}
-                value={value}
+                value={pickerValue}
                 items={items}
                 showTickIcon={false}
                 setOpen={setOpen}
-                setValue={setValue}
+                setValue={handleChangeValue}
                 setItems={setItems}
                 style={styles.picker}
                 dropDownContainerStyle={styles.picker}
@@ -45,10 +52,14 @@ const PriorityPicker = (props) => {
 
 PriorityPicker.propTypes = {
     theme: PropTypes.any,
+    value: PropTypes.string,
+    onChangeValue: PropTypes.func
 };
   
 PriorityPicker.defaultProps = {
-    theme: null
+    theme: null,
+    value: "",
+    onChangeValue: () => {}
 };
 
 export default PriorityPicker;

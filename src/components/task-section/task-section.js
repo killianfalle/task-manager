@@ -4,10 +4,14 @@ import { useTheme } from '@react-navigation/native';
 import { Text, View, TouchableOpacity, Animated, Dimensions } from 'react-native';
 
 import { styles } from './styles';
+import { Context } from '../../stores/context/context';
+import Checkbox from '../checkbox/checkbox';
+
 import ChevronUp from '../../assets/icons/svg/chevron-up-icon';
 import ChevronDown from '../../assets/icons/svg/chevron-down-icon';
-import Checkbox from '../checkbox/checkbox';
-import { Context } from '../../stores/context/context';
+import ChevronLow from '../../assets/icons/svg/chevron-low';
+import ChevronMedium from '../../assets/icons/svg/chevron-medium';
+import ChevronHigh from '../../assets/icons/svg/chevron-high';
 
 const {height} = Dimensions.get('window');
 export const TaskSection = (props) => {
@@ -21,6 +25,11 @@ export const TaskSection = (props) => {
     const {tasks, setTasks, setToast} = useContext(Context);
     const [isVisible, setIsVisible] = useState(true);
     const animation = useRef(new Animated.Value(1)).current;
+    const taskIcons = {
+      high: <ChevronHigh color={colors.alert}/>,
+      medium: <ChevronMedium color={colors.caution}/>,
+      low: <ChevronLow color={colors.primary}/>
+    }
 
     const handlePressCheck = (value, task) => {
       const otherType = Object.keys(tasks).find(item => item != type);
@@ -66,7 +75,7 @@ export const TaskSection = (props) => {
       inputRange: [0, 1],
       outputRange: [0, height]    // use device's screen height
     });
-  
+
     return (
       <View style={{flex: 1, overflow: 'hidden'}}>
         <View style={styles.headerContainer}>
@@ -84,10 +93,11 @@ export const TaskSection = (props) => {
           {item?.data.map((task, index) => (
             <View key={index} style={styles.item}>
               <Checkbox
-                label={task.title}
+                item={task}
                 isChecked={type === "completed"}    // Checks if item is on "todo" or "completed" object
                 fillColor={colors.primary}
                 unfillColor={colors.primary}
+                icon={taskIcons[task.priority]}
                 onPressCheck={(value) => handlePressCheck(value, task)}
                 onPressLabel={() => onShowDetails(task)}
               />

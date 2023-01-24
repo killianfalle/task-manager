@@ -9,8 +9,9 @@ import { styles } from './styles';
 
 const Checkbox = (props) => {
     const {
-        label,
+        item,
         isChecked,
+        icon,
         fillColor,
         unfillColor,
         onPressCheck,
@@ -35,15 +36,25 @@ const Checkbox = (props) => {
                 <Text
                     style={styles.title(isChecked)}
                     numberOfLines={1}>
-                    {label}
+                    {item.title}
                 </Text>
             </TouchableOpacity>
+
+            {/* Icon */}
+            {icon && (
+                <View style={styles.icon}>
+                    <Text style={styles.priorityText}>{item.priority}</Text>
+                    {icon}
+                </View>
+            )}
+            
         </View>
     );
 };
 
 Checkbox.propTypes = {
-    label: PropTypes.string,
+    item: PropTypes.object,
+    icon: PropTypes.any,
     isChecked: PropTypes.bool,
     fillColor: PropTypes.string,
     unfillColor: PropTypes.string,
@@ -52,8 +63,9 @@ Checkbox.propTypes = {
 };
   
 Checkbox.defaultProps = {
-    label: "",
+    item: {},
     isChecked: false,
+    icon: null,
     fillColor: "#000",
     unfillColor: "#000",
     onPressCheck: () => {},
