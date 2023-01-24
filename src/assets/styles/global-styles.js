@@ -8,6 +8,12 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    pageTitle: {
+        textAlign: 'center',
+        fontWeight: '400',
+        fontSize: 30,
+        marginVertical: 20
+    },
     filterContainer: {
         alignItems: "flex-end",
         marginRight: 8,

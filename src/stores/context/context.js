@@ -29,6 +29,10 @@ export const ContextProvider = ({ initials, children }) => {
     onSubmit: () => {}
   });
 
+  const [settings, setSettings] = useState({
+    showCompletedTasks: false,
+  });
+
   return (
     <Context.Provider
       value={{
@@ -39,7 +43,9 @@ export const ContextProvider = ({ initials, children }) => {
         toast,
         setToast,
         sortBy,
-        setSortBy
+        setSortBy,
+        settings,
+        setSettings
       }}
     >
       {children}

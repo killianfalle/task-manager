@@ -1,17 +1,17 @@
-import { useTheme } from '@react-navigation/native';
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useTheme } from '@react-navigation/native';
 import { Switch, Text, View } from 'react-native';
 import styles from './styles';
 
 const Toggle = (props) => {
     const {
         label,
-        description
+        description,
+        value,
+        onToggleSwitch
     } = props;
     const {colors} = useTheme();
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
         <View style={styles.wrapper}>
@@ -20,10 +20,10 @@ const Toggle = (props) => {
                 {description ? <Text style={styles.description} numberOfLines={1}>{description}</Text> : null}
             </View>
             <Switch
+                value={value}
                 trackColor={{true: colors.primary}}
-                thumbColor={isEnabled ? colors.white : '#f4f3f4'}
-                onValueChange={toggleSwitch}
-                value={isEnabled}
+                thumbColor={value ? colors.white : '#f4f3f4'}
+                onValueChange={onToggleSwitch}
             />
         </View>
     );
@@ -33,10 +33,14 @@ const Toggle = (props) => {
 Toggle.propTypes = {
     label: PropTypes.string,
     description: PropTypes.string,
+    value: PropTypes.bool,
+    onToggleSwitch: PropTypes.func
 };
   
 Toggle.defaultProps = {
     label: "",
     description: "",
+    value: false,
+    onToggleSwitch: () => {}
 };
 export default Toggle;
