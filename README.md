@@ -7,6 +7,9 @@ npm: 8.12.1
 react-native: 0.68.1
 react: 17.0.2
 
+## Download
+Get this app from here on [releases page](https://github.com/killianfalle/task-manager/releases).
+
 ## Screenshots
 ![Tasks](./src/assets/screenshots/screenshots.png)
 
