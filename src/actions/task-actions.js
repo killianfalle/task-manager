@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Alert } from "react-native";
 import { Context } from "../stores/context/context";
 
 export default function useTaskActions () {
@@ -71,6 +72,21 @@ export default function useTaskActions () {
         handleFormSubmission(`Successfully ${type}d ${type === "create" ? "a new" : "the"} task`)
     }
 
+    const confirmDelete = (data) => {
+        Alert.alert(
+            'Confirm Delete',
+            'Are you sure you want to delete this task?',
+            [
+              {text: 'OK', onPress: () => handleDelete(data)},
+              {
+                text: 'Cancel',
+                style: 'cancel',
+              },
+            ],
+            {cancelable: false},
+        );
+    }
+
     const handleDelete = (data) => {
         const type = findType(data);
 
@@ -114,6 +130,6 @@ export default function useTaskActions () {
 
     return {
         handleSubmit,
-        handleDelete,
+        confirmDelete,
     }
 }

@@ -33,7 +33,7 @@ const TaskForm = (props) => {
 
     const {
         handleSubmit,
-        handleDelete
+        confirmDelete
     } = useTaskActions();
 
     const {
@@ -130,7 +130,7 @@ const TaskForm = (props) => {
 
                         <View style={styles.buttonContainer}>
                             {data && (
-                                <TouchableOpacity onPress={() => handleDelete(data)} style={styles.button(theme.grey)}>
+                                <TouchableOpacity onPress={() => confirmDelete(data)} style={styles.button(theme.grey)}>
                                     <Text style={styles.buttonText}>Delete</Text>
                                 </TouchableOpacity> 
                             )}
