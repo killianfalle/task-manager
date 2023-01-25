@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '400',
         fontSize: 30,
-        marginTop: 20,
+        marginTop: 10,
         marginBottom: 10
     },
     filterContainer: {

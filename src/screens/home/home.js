@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { styles } from '../../assets/styles/global-styles';
 import { TaskSection } from '../../components/task-section/task-section';
 import { Context } from '../../stores/context/context';
@@ -15,7 +15,10 @@ const Home = () => {
   return (
     <View style={styles.wrapper}>
       <ScrollView>
-        <Filter />
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Text style={styles.pageTitle}>Your Tasks</Text>
+          <Filter />
+        </View>
 
        <View style={{minHeight: 250}}>
          {/* Use Object.keys() to convert it to array to map the data from context */}

@@ -7,13 +7,18 @@ npm: 8.12.1
 react-native: 0.68.1
 react: 17.0.2
 
+## Screeshots
+![Tasks](./src/screenshots/screeshot-1.JPEG)
+![Task-form](./src/screenshots/screeshot-2.JPEG)
+![Settings](./src/screenshots/screeshot-2.JPEG)
+
 ## Folder structure
 This template follows a very simple project structure:
 
 - `src (folder)`: This folder is the main container of all the code inside your application.
   - `assets (folder)`: Asset folder to store all images, styles, vectors, etc.
   - `components (folder)`: Folder to store any common component that you use through your app
-  - `navigation (folder)`: Folder to store the navigators.
+  - `navigation (folder)`: Folder to st`ore the navigators.
   - `stores (folder)`: Folder to store the storage managements (eg: asyncstorage, context or redux)
   - `screens (folder)`: Folder that contains all your application screens/features.
     - `{screen_name}`: Each screen should be stored inside its folder and inside it a file for its code.
