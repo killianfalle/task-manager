@@ -7,10 +7,8 @@ npm: 8.12.1
 react-native: 0.68.1
 react: 17.0.2
 
-## Screeshots
-![Tasks](./src/screenshots/screeshot-1.JPEG)
-![Task-form](./src/screenshots/screeshot-2.JPEG)
-![Settings](./src/screenshots/screeshot-2.JPEG)
+## Screenshots
+![Tasks](./src/assets/screenshots/screenshots.png)
 
 ## Folder structure
 This template follows a very simple project structure:
