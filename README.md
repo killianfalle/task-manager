@@ -10,6 +10,15 @@ react: 17.0.2
 ## Screenshots
 ![Tasks](./src/assets/screenshots/screenshots.png)
 
+## Features
+- [x] Add and view tasks
+- [x] Delete a task
+- [x] Complete a task
+- [x] Set a priority for my tasks
+- [x] View the tasks sorted by priority and name
+- [x] View the number of total and completed tasks
+- [x] Settings to show total number of tasks, show completed tasks, and clear all data
+
 ## Folder structure
 This template follows a very simple project structure:
 
